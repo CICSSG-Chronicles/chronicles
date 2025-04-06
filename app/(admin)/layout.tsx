@@ -19,6 +19,17 @@ export default async function Layout({
     return redirect("/");
   }
 
+  
+  const officers = supabase.channel('custom-all-channel')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'officers' },
+    (payload) => {
+      console.log('Change received!', payload)
+    }
+  )
+  .subscribe()
+  
   return (
     <div className="flex">
       <AdminSidebar>

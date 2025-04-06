@@ -132,3 +132,40 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+
+export const createDocumentAction = async (formData: FormData) => {
+  const title = formData.get("title")?.toString();
+  const imageUrl = formData.get("imageUrl")?.toString();
+  const date = formData.get("date")?.toString();
+  const summary = formData.get("summary")?.toString();
+  const caption = formData.get("caption")?.toString();
+
+  if (!title || !imageUrl || !date || !summary || !caption) {
+    return encodedRedirect(
+      "error",
+      "/edit-document",
+      "All fields are required",
+    );
+  }
+
+  const supabase = await createClient();
+
+  const { error } = await supabase.from("documents").insert({
+    title,
+    image_url: imageUrl,
+    date,
+    summary,
+    caption,
+  });
+
+  if (error) {
+    console.error(error.message);
+    return encodedRedirect(
+      "error",
+      "/edit-document",
+      "Could not create document",
+    );
+  }
+
+  return redirect("/edit-documents");
+}
