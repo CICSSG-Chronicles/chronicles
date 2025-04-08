@@ -5,6 +5,7 @@ import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
@@ -14,6 +15,9 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
     <>
 
       <div className="float-left ml-8 mt-4">
+        <Button type="submit" variant={"default"}>
+          Create
+        </Button>
 
       </div>
 
@@ -56,7 +60,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
                     <button className="btn btn-sm btn-error">Delete</button>
                   </td>
                 </tr>
-                
+
               </tbody>
             </table>
           </div>

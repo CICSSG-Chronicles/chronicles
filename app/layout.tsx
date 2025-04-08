@@ -9,6 +9,7 @@ import NavLinks from "@/components/nav-links";
 import { House } from "lucide-react";
 
 
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
@@ -93,7 +94,7 @@ export default async function RootLayout({
       </body>
     </html>
   ) : (
-    <html lang="en" data-theme="light" className={geistSans.className} suppressHydrationWarning>
+    <html lang="en" data-theme="cicssg" className={geistSans.className} suppressHydrationWarning>
       <body className="bg-background text-foreground">
         {children}
       </body>
